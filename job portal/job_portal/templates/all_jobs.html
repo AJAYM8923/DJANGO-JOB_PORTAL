@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Jobs - JobConnect</title>
+    <link rel="stylesheet" href="{% static 'css/all_jobs/style.css' %}" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">JobConnect</div>
+
+            <form action="{% url 'job_search_results' %}" method="GET" class="navbar-search">
+                <input type="text" name="q" placeholder="Search jobs..." />
+                <button type="submit">Search</button>
+            </form>
+
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'user_dashboard' %}">{{ user.first_name }}</a></li>
+
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+
+                <li><a href="{% url 'post_job' %}">Post a Job</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="job-section ">
+        <div class="container">
+            {% for job in jobs %}
+            <div class="card">
+                <h3><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h3>
+                <p><strong>Company:</strong> {{ job.company }}</p>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <span class="type">{{ job.type }}</span>
+            </div>
+            {% empty %}
+            <p>No jobs found.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+
+</html>

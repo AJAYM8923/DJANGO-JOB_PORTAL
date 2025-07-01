@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Post a Job</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* Reset some defaults */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #004080;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 14px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            background-color: #3c6382;
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 700px;
+            background: #fff;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0a3d62;
+            margin-bottom: 1.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 2rem;
+            padding: 12px;
+            background-color: #0a3d62;
+            color: #fff;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #3c6382;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .nav-links li a {
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">JobConnect</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'user_dashboard' %}">{{ user.first_name }}</a></li>
+                {% endif %}
+                <li><a href="{% url 'all_jobs' %}"> Jobs</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Post a Job</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            <label for="title">Job Title</label>
+            <input type="text" name="title" id="title" required>
+
+            <label for="company">Company Name</label>
+            <input type="text" name="company" id="company" required>
+
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location" required>
+
+            <label for="type">Job Type</label>
+            <select name="type" id="type" required>
+                <option value="">Select</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Internship">Internship</option>
+                <option value="Contract">Contract</option>
+                <option value="Remote">Remote</option>
+            </select>
+
+            <label for="salary">Salary (Optional)</label>
+            <input type="text" name="salary" id="salary">
+
+            <label for="category">Job Category</label>
+            <input type="text" name="category" id="category" placeholder="e.g. Software Development" required>
+
+            <label for="experience">Required Experience</label>
+            <input type="text" name="experience" id="experience" placeholder="e.g. 2-4 years" required>
+
+            <label for="qualifications">Qualifications</label>
+            <input type="text" name="qualifications" id="qualifications" placeholder="e.g. B.Tech, MCA" required>
+
+            <label for="description">Job Description</label>
+            <textarea name="description" id="description" rows="6" required></textarea>
+
+            <label for="responsibilities">Key Responsibilities</label>
+            <textarea name="responsibilities" id="responsibilities" rows="5" required></textarea>
+
+            <label for="skills">Required Skills</label>
+            <input type="text" name="skills" id="skills" placeholder="e.g. Python, Django, SQL" required>
+
+            <label for="deadline">Application Deadline</label>
+            <input type="date" name="deadline" id="deadline" required>
+
+            <button type="submit">Post Job</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

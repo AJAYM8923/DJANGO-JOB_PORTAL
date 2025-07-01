@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Applications Received</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 16px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: #2980b9;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        li {
+            background-color: white;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        li strong {
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        a.download {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #3498db;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.download:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            margin: 15px 0;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            a.download {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="{% url 'home' %}" class="home-button">← Back to Home</a>
+
+        <h2>Applications Received</h2>
+
+        {% for job, applications in applications_by_job.items %}
+        <h3>{{ job.title }} at {{ job.company }}</h3>
+
+        {% if applications %}
+        <ul>
+            {% for app in applications %}
+            <li>
+                <strong>{{ app.user.username }}</strong>
+                <a href="{{ app.resume.url }}" class="download" download>Download Resume</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No applications for this job yet.</p>
+        {% endif %}
+        {% empty %}
+        <p>No job postings found.</p>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>

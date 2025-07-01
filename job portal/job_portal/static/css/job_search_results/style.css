@@ -1,0 +1,187 @@
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    background-color: #004080;
+    color: white;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Centered Search */
+.nav-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+}
+
+.nav-search input {
+    padding: 0.5rem 1rem;
+    width: 70%;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.nav-search button {
+    padding: 0.5rem 1rem;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.nav-search button:hover {
+    background-color: #e6b800;
+}
+
+/* Navbar Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.4rem 0.7rem;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: #003366;
+}
+
+/* Main Job Listings */
+.job-listings {
+    padding: 3rem 1rem;
+    background-color: #f0f4f8;
+    min-height: 80vh;
+    text-align: center;
+}
+
+.job-listings h1 {
+    font-size: 2rem;
+    color: #004080;
+    margin-bottom: 2rem;
+}
+
+/* Grid Container */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    justify-items: center;
+}
+
+/* Job Card */
+.card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #004080;
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    color: #004080;
+    margin-bottom: 0.5rem;
+}
+
+.card h3 a {
+    text-decoration: none;
+    color: #004080;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.card .type {
+    display: inline-block;
+    background: #e0e0e0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    color: #333;
+}
+
+/* No Results Message */
+.no-results {
+    grid-column: 1 / -1;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Responsive Navbar Stack */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-search {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .nav-search input {
+        width: 70%;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+    .job-listings h1 {
+        font-size: 1.6rem;
+    }
+
+    .card h3 {
+        font-size: 1.1rem;
+    }
+}

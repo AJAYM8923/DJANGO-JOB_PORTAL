@@ -1,0 +1,274 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    background-color: #004080;
+    color: white;
+    gap: 1rem;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex: 1;
+}
+
+/* Search Bar in Navbar */
+.navbar-search {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-search input {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    font-size: 1rem;
+    width: 60%;
+    max-width: 300px;
+}
+
+.navbar-search button {
+    padding: 0.5rem 1rem;
+    background-color: #ffcc00;
+    color: #004080;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-search button:hover {
+    background-color: #e6b800;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #ffcc00;
+}
+
+/* Ensure spacing between navbar and other content */
+header {
+    margin-bottom: 2rem;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.search-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-form button {
+    padding: 0.75rem 1.5rem;
+    background-color: #004080;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+    background-color: #003366;
+}
+
+/* Job Listings Section */
+.job-listings {
+    padding: 4rem 2rem;
+    background-color: #f0f4f8;
+    text-align: center;
+}
+
+.job-listings h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #004080;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: white;
+    border-left: 5px solid #004080;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.card .type {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Footer */
+.footer {
+    background-color: #00264d;
+    color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.footer-links li a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links li a:hover {
+    color: #ffcc00;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .navbar-search {
+        justify-content: center;
+        margin: 1rem 0;
+    }
+
+    .navbar-search input {
+        width: 70%;
+    }
+
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form input,
+    .search-form button {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .search-form button {
+        border-top: 1px solid #ccc;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobConnect Portal</title>
+    <link rel="stylesheet" href="{% static 'css/home/style.css' %}" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">JobConnect</div>
+            <ul class="nav-links">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'user_dashboard' %}">{{user.first_name}}</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+                <li><a href="{% url 'all_jobs' %}"> Jobs</a></li>
+                <li><a href="{% url 'post_job' %}">Post a Job</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="hero-section">
+        <div class="search-container">
+            <h1>Find Your Dream Job</h1>
+            <form class="search-form" action="{% url 'job_search_results' %}" method="get">
+                <input type="text" name="q" placeholder=" Search jobs by keyword..." />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </main>
+    <section class="job-listings">
+        <h1 style="text-align: center;">Latest Job Listings</h1>
+        <div class="container">
+            {% for job in jobs %}
+            <div class="card">
+                <h3>
+                    <a href="{% url 'job_detail' job.id %}">{{ job.title }}</a>
+                </h3>
+                <p><strong>Company:</strong> {{ job.company }}</p>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <span class="type">{{ job.type }}</span>
+            </div>
+            {% empty %}
+            <p>No job listings available.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 JobConnect. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a>Privacy Policy</a></li>
+                <li><a>Terms</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
